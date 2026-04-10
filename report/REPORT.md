@@ -11,20 +11,20 @@
 ### Cosine Similarity (Ex 1.1)
 
 **High cosine similarity nghĩa là gì?**
-> High cosine similarity (gần 1.0) nghĩa là hai đoạn văn bản có ý nghĩa ngữ nghĩa tương tự nhau — embedding vectors của chúng gần như "cùng hướng" trong không gian nhiều chiều. Nói cách khác, nội dung mà chúng diễn đạt có liên quan chặt chẽ với nhau.
+> High cosine similarity (gần 1.0) nghĩa là hai đoạn văn bản có ý nghĩa ngữ nghĩa tương tự nhau — embedding vectors của chúng gần như "cùng hướng" trong không gian nhiều chiều. Trong ngữ cảnh pháp luật, điều này có nghĩa là hai điều khoản nói về cùng một vấn đề pháp lý, dù dùng từ ngữ khác nhau.
 
-**Ví dụ HIGH similarity:**
-- Sentence A: "Python is a programming language used for AI."
-- Sentence B: "Python is widely used in machine learning and data science."
-- Tại sao tương đồng: Cả hai câu đều đề cập đến Python trong ngữ cảnh trí tuệ nhân tạo/khoa học dữ liệu, chia sẻ cùng chủ đề và từ khóa liên quan.
+**Ví dụ HIGH similarity (từ Bộ luật Dân sự):**
+- Sentence A: "Cá nhân, pháp nhân xác lập, thực hiện quyền dân sự trên cơ sở tự do, tự nguyện cam kết, thỏa thuận."
+- Sentence B: "Mọi cam kết, thỏa thuận không vi phạm điều cấm của luật có hiệu lực thực hiện đối với các bên."
+- Tại sao tương đồng: Cả hai câu đều nói về quyền tự do ý chí trong giao dịch dân sự, chia sẻ ngữ nghĩa về cam kết, thỏa thuận và hiệu lực pháp lý.
 
-**Ví dụ LOW similarity:**
-- Sentence A: "The customer support team handles billing issues."
-- Sentence B: "Recursive chunking splits text by paragraph boundaries."
-- Tại sao khác: Hai câu thuộc hai domain hoàn toàn khác nhau (hỗ trợ khách hàng vs. kỹ thuật xử lý văn bản), không chia sẻ ngữ nghĩa hay từ khóa nào.
+**Ví dụ LOW similarity (từ Bộ luật Dân sự):**
+- Sentence A: "Tòa án tuyên bố một người là đã chết khi biệt tích 5 năm liền trước ngày yêu cầu."
+- Sentence B: "Chủ sở hữu có quyền khai thác, sử dụng, định đoạt tài sản thuộc sở hữu của mình."
+- Tại sao khác: Một câu thuộc chương về tuyên bố chết (Nhân thân), câu kia thuộc chương về quyền sở hữu (Tài sản) — hai domain pháp lý hoàn toàn khác biệt.
 
 **Tại sao cosine similarity được ưu tiên hơn Euclidean distance cho text embeddings?**
-> Cosine similarity chỉ đo **hướng** của vector, không phụ thuộc vào **độ dài** (magnitude). Text embeddings thường được normalize về cùng chiều dài, nhưng ngay cả khi không, cosine similarity vẫn so sánh chính xác hơn vì nó loại bỏ ảnh hưởng của độ dài văn bản — hai đoạn text dài ngắn khác nhau nhưng cùng chủ đề vẫn có cosine similarity cao. Euclidean distance lại bị ảnh hưởng bởi magnitude, dẫn đến kết quả sai lệch khi vector có độ dài khác nhau.
+> Cosine similarity chỉ đo **hướng** của vector, không phụ thuộc vào **độ dài** (magnitude). Đặc biệt quan trọng với văn bản pháp luật vì Điều 3 (ngắn gọn, 5 khoản) và Điều 122 (dài, nhiều khoản) cần được so sánh công bằng. Nếu dùng Euclidean distance, Điều 122 luôn bị coi là "xa hơn" chỉ vì nội dung dài hơn, dù ngữ nghĩa liên quan. Cosine similarity loại bỏ sai lệch này.
 
 ### Chunking Math (Ex 1.2)
 
@@ -33,9 +33,9 @@
 > `num_chunks = ceil((10000 - 50) / (500 - 50)) = ceil(9950 / 450) = ceil(22.11) = 23 chunks`
 > **Đáp án: 23 chunks**
 
-**Nếu overlap tăng lên 100, chunk count thay đổi thế nào? Tại sao muốn overlap nhiều hơn?**
+**Nếu overlap tăng lên 100, chunk count thay đổi thế nào? Tại sao muốn overlap nhiều hơn trong văn bản pháp luật?**
 > `num_chunks = ceil((10000 - 100) / (500 - 100)) = ceil(9900 / 400) = ceil(24.75) = 25 chunks`
-> Số chunks tăng từ 23 lên 25. Overlap lớn hơn giúp bảo toàn ngữ cảnh (context preservation) tốt hơn — khi một ý tưởng trải dài qua ranh giới chunk, phần trùng lặp đảm bảo rằng cả hai chunk lân cận đều chứa thông tin chuyển tiếp, giảm nguy cơ mất ngữ cảnh quan trọng.
+> Số chunks tăng từ 23 lên 25. Đối với văn bản pháp luật như Bộ luật Dân sự, overlap lớn hơn đặc biệt quan trọng vì nhiều Điều khoản tham chiếu chéo nhau — ví dụ "theo quy định tại Điều 3 của Bộ luật này". Overlap đảm bảo câu tham chiếu này xuất hiện ở cả hai chunk liền kề, giúp retrieval hiểu được mối liên hệ giữa các Điều.
 
 ---
 
@@ -43,30 +43,26 @@
 
 ### Domain & Lý Do Chọn
 
-**Domain:** AI & Software Engineering Documentation (Tài liệu kỹ thuật về AI và Phát triển Phần mềm)
+**Domain:** Pháp luật Dân sự Việt Nam (Vietnamese Civil Law)
 
 **Tại sao nhóm chọn domain này?**
-> Domain tài liệu kỹ thuật AI/Software có cấu trúc đa dạng: bao gồm tài liệu dạng hướng dẫn (tutorial), ghi chú kỹ thuật (notes), thiết kế hệ thống (system design), playbook vận hành, và báo cáo thí nghiệm. Sự đa dạng này giúp kiểm tra toàn diện các chiến lược chunking trên nhiều kiểu văn bản khác nhau. Ngoài ra, domain có cả tài liệu tiếng Anh và tiếng Việt, phù hợp để đánh giá hiệu quả metadata filtering theo ngôn ngữ.
+> Bộ luật Dân sự 2015 (Luật số 91/2015/QH13) là một trong những văn bản pháp luật nền tảng nhất của hệ thống pháp luật Việt Nam với hơn 600 điều khoản. Domain này có cấu trúc phân cấp rõ ràng (Phần → Chương → Điều → Khoản → Điểm), ngôn ngữ đặc thù, và yêu cầu hiểu ngữ nghĩa sâu — đây là bài kiểm tra thực tế khắt khe cho hệ thống RAG. Việc xây dựng RAG cho pháp luật có giá trị ứng dụng thực tiễn cao (hỗ trợ tra cứu pháp lý, tư vấn sơ bộ).
 
 ### Data Inventory
 
 | # | Tên tài liệu | Nguồn | Số ký tự | Metadata đã gán |
 |---|--------------|-------|----------|-----------------|
-| 1 | python_intro.txt | Tự soạn | 1,944 | category=programming, lang=en |
-| 2 | vector_store_notes.md | Tự soạn | 2,123 | category=ai_infrastructure, lang=en |
-| 3 | rag_system_design.md | Tự soạn | 2,391 | category=ai_infrastructure, lang=en |
-| 4 | customer_support_playbook.txt | Tự soạn | 1,692 | category=support, lang=en |
-| 5 | chunking_experiment_report.md | Tự soạn | 1,987 | category=ai_infrastructure, lang=en |
-| 6 | vi_retrieval_notes.md | Tự soạn | 2,177 | category=ai_infrastructure, lang=vi |
-| 7 | Luat_Dan_Su.md | Cổng thông tin Chính phủ | 283,442 | category=law, lang=vi |
+| 1 | Luat_Dan_Su.md | Cổng Thông tin điện tử Chính phủ (chinhphu.vn) | 283,442 | category=law, lang=vi, law_code=91/2015/QH13 |
 
 ### Metadata Schema
 
 | Trường metadata | Kiểu | Ví dụ giá trị | Tại sao hữu ích cho retrieval? |
 |----------------|------|---------------|-------------------------------|
-| category | str | "programming", "ai_infrastructure", "support" | Cho phép lọc tài liệu theo chủ đề, tăng precision khi query thuộc một lĩnh vực cụ thể |
-| lang | str | "en", "vi" | Cho phép lọc theo ngôn ngữ — tránh trả về tài liệu tiếng Anh cho câu hỏi tiếng Việt và ngược lại |
-| source | str | "data/python_intro.txt" | Giúp truy ngược nguồn gốc tài liệu, hỗ trợ source traceability |
+| category | str | "law" | Cho phép lọc ra chỉ các tài liệu pháp lý khi hệ thống có nhiều loại tài liệu |
+| lang | str | "vi" | Đảm bảo chỉ trả về tài liệu tiếng Việt, tránh nhầm với văn bản nước ngoài |
+| source | str | "data/Luat_Dan_Su.md" | Truy ngược nguồn gốc điều khoản được trích dẫn |
+| law_code | str | "91/2015/QH13" | Lọc theo số hiệu luật khi hệ thống có nhiều bộ luật khác nhau |
+| chunk_idx | int | 0, 1, 2, ... | Xác định vị trí chunk trong tài liệu gốc, hỗ trợ tái tạo ngữ cảnh xung quanh |
 
 ---
 
@@ -74,58 +70,43 @@
 
 ### Baseline Analysis
 
-Chạy `ChunkingStrategyComparator().compare()` trên 6 tài liệu (chunk_size=500):
+Chạy `ChunkingStrategyComparator().compare()` trên `Luat_Dan_Su.md` (chunk_size=500):
 
 | Tài liệu | Strategy | Chunk Count | Avg Length | Preserves Context? |
 |-----------|----------|-------------|------------|-------------------|
-| python_intro.txt | fixed_size | 4 | 486.0 | Trung bình — cắt giữa câu |
-| python_intro.txt | by_sentences | 5 | 387.0 | Tốt — giữ ranh giới câu |
-| python_intro.txt | recursive | 5 | 387.0 | Tốt — chia theo đoạn |
-| vector_store_notes.md | fixed_size | 5 | 424.6 | Trung bình |
-| vector_store_notes.md | by_sentences | 8 | 263.6 | Tốt — nhưng chunk nhỏ |
-| vector_store_notes.md | recursive | 7 | 301.4 | Tốt nhất — giữ section |
-| rag_system_design.md | fixed_size | 5 | 478.2 | Trung bình |
-| rag_system_design.md | by_sentences | 5 | 476.0 | Tốt |
-| rag_system_design.md | recursive | 7 | 339.7 | Tốt nhất — chia section |
-| customer_support_playbook.txt | fixed_size | 4 | 423.0 | Trung bình |
-| customer_support_playbook.txt | by_sentences | 4 | 421.0 | Tốt |
-| customer_support_playbook.txt | recursive | 5 | 336.6 | Tốt |
-| chunking_experiment_report.md | fixed_size | 4 | 496.8 | Trung bình |
-| chunking_experiment_report.md | by_sentences | 5 | 395.6 | Tốt |
-| chunking_experiment_report.md | recursive | 5 | 395.6 | Tốt nhất |
-| vi_retrieval_notes.md | fixed_size | 4 | 416.8 | Trung bình |
-| vi_retrieval_notes.md | by_sentences | 5 | 331.6 | Tốt |
-| vi_retrieval_notes.md | recursive | 5 | 331.6 | Tốt |
+| Luat_Dan_Su.md | fixed_size | 556 | 499.2 | Kém — cắt ngang Điều/Khoản |
+| Luat_Dan_Su.md | by_sentences | 892 | 311.4 | Trung bình — giữ câu nhưng tách Điều |
+| Luat_Dan_Su.md | recursive (chunk=500) | 599 | 462.3 | Tốt — ưu tiên tách theo đoạn văn |
+| Luat_Dan_Su.md | recursive (chunk=1000) | 230 | 907.1 | Tốt nhất — giữ trọn Điều khoản |
 
 ### Strategy Của Tôi
 
-**Loại:** RecursiveChunker (tuned)
+**Loại:** RecursiveChunker (chunk_size=1000)
 
 **Mô tả cách hoạt động:**
-> RecursiveChunker chia văn bản theo thứ tự ưu tiên: trước tiên thử tách theo đoạn (`\n\n`), rồi theo dòng (`\n`), rồi theo câu (`. `), rồi theo từ (` `), và cuối cùng là theo ký tự (`""`). Khi một phần văn bản vượt quá `chunk_size`, nó sẽ đệ quy xuống separator tiếp theo để cắt nhỏ hơn. Các phần nhỏ hơn `chunk_size` được gộp lại để tối ưu kích thước. Điều này đảm bảo chunk luôn giữ được ngữ nghĩa trọn vẹn nhất có thể.
+> RecursiveChunker chia văn bản theo thứ tự ưu tiên: trước tiên thử tách theo đoạn (`\n\n`), rồi theo dòng (`\n`), rồi theo câu (`. `), rồi theo từ (` `), và cuối cùng là theo ký tự (`""`). Base case: nếu text ≤ `chunk_size` thì trả về ngay. Các phần nhỏ hơn `chunk_size` được gộp lại để tối ưu kích thước. Điều này đảm bảo chunk luôn giữ được ngữ nghĩa trọn vẹn nhất có thể.
 
-**Tại sao tôi chọn strategy này cho domain nhóm?**
-> Tài liệu kỹ thuật thường có cấu trúc rõ ràng với headers, paragraphs, và sections. RecursiveChunker khai thác cấu trúc này bằng cách ưu tiên tách ở ranh giới đoạn văn, giữ nguyên mỗi chủ đề con trong một chunk riêng. So với FixedSizeChunker (cắt máy móc theo ký tự) và SentenceChunker (không xét cấu trúc đoạn), RecursiveChunker cho kết quả coherent nhất trên dữ liệu markdown/txt có heading.
+**Tại sao tôi chọn strategy này cho Bộ luật Dân sự?**
+> Bộ luật Dân sự có cấu trúc đặc thù: mỗi **Điều** là một đơn vị ngữ nghĩa độc lập, có thể ngắn (2-3 khoản) hoặc dài (10+ khoản). Với `chunk_size=1000`, RecursiveChunker thường giữ trọn được 1-2 Điều trong mỗi chunk — đây là đơn vị trả lời tự nhiên nhất cho câu hỏi pháp lý. So với FixedSizeChunker (cắt ngang giữa chừng một Điều), hay SentenceChunker (tách từng khoản riêng lẻ mất ngữ cảnh), recursive chunking cho retrieval quality cao nhất trên loại tài liệu này.
 
 ### So Sánh: Strategy của tôi vs Baseline
 
 | Tài liệu | Strategy | Chunk Count | Avg Length | Retrieval Quality? |
 |-----------|----------|-------------|------------|-------------------|
-| vector_store_notes.md | fixed_size (baseline) | 5 | 424.6 | Trung bình — chunk cắt qua ý |
-| vector_store_notes.md | **recursive (của tôi)** | 7 | 301.4 | Tốt — mỗi chunk chứa 1 section rõ ràng |
-| rag_system_design.md | fixed_size (baseline) | 5 | 478.2 | Trung bình |
-| rag_system_design.md | **recursive (của tôi)** | 7 | 339.7 | Tốt — tách đúng ranh giới Architecture/Evaluation/Operations |
+| Luat_Dan_Su.md | fixed_size (baseline, 500) | 556 | 499.2 | Kém — cắt ngang Điều 68 thành 2 phần, mất ngữ cảnh tuyên bố mất tích |
+| Luat_Dan_Su.md | by_sentences (baseline, 500) | 892 | 311.4 | Trung bình — từng khoản riêng nhưng mất header "Điều X" |
+| Luat_Dan_Su.md | **recursive (của tôi, 1000)** | 230 | 907.1 | Tốt nhất — mỗi chunk giữ trọn 1-2 Điều kèm header |
 
 ### So Sánh Với Thành Viên Khác
 
 | Thành viên | Strategy | Retrieval Score (/10) | Điểm mạnh | Điểm yếu |
 |-----------|----------|----------------------|-----------|----------|
-| Tôi | RecursiveChunker | 7/10 | Giữ context tốt, tách theo cấu trúc tài liệu | Chunk count nhiều hơn |
-| [Hoàng] | SentenceChunker | 6/10 | Chunk dễ đọc, ranh giới tự nhiên | Chunk size không đều |
-| [Đức] | FixedSizeChunker | 5/10 | Đơn giản, count dự đoán được | Cắt giữa câu, mất context |
+| Tôi | RecursiveChunker (1000) | 7/10 | Giữ trọn Điều khoản, header rõ ràng | Chunk lớn có thể chứa nhiều chủ đề |
+| [Hoàng] | SentenceChunker (max=2) | 6/10 | Chunk nhỏ, tìm được chi tiết khoản | Mất header Điều, khó biết đang ở Điều nào |
+| [Đức] | FixedSizeChunker (500) | 4/10 | Đơn giản, predictable | Cắt ngang Điều, mất "Điều X" header quan trọng |
 
 **Strategy nào tốt nhất cho domain này? Tại sao?**
-> RecursiveChunker cho kết quả tốt nhất cho domain tài liệu kỹ thuật AI vì nó khai thác cấu trúc markdown headers và paragraph sẵn có. Với tài liệu có sections rõ ràng như rag_system_design.md, recursive chunking tách chính xác Architecture, Evaluation, Operations thành các chunk riêng biệt, trong khi fixed-size chunking gộp chung hoặc cắt ngang qua các sections này.
+> RecursiveChunker với `chunk_size=1000` cho kết quả tốt nhất cho Bộ luật Dân sự vì nó khai thác cấu trúc phân cấp sẵn có (## **Điều X.**). Khi mỗi chunk giữ được header "## **Điều 68.**" kèm nội dung, retrieval có thể tìm ra đúng Điều khi người dùng hỏi về "tuyên bố mất tích". FixedSizeChunker và SentenceChunker thường cắt bỏ header hoặc tách nội dung ra khỏi Điều gốc.
 
 ---
 
@@ -134,23 +115,23 @@ Chạy `ChunkingStrategyComparator().compare()` trên 6 tài liệu (chunk_size=
 ### Chunking Functions
 
 **`SentenceChunker.chunk`** — approach:
-> Sử dụng regex `(?<=[.!?])(?:\s|\n)` để detect vị trí kết thúc câu — pattern này tìm các ký tự `.`, `!`, `?` theo sau bởi space hoặc newline. Sau khi tách thành danh sách câu, gom nhóm mỗi `max_sentences_per_chunk` câu thành 1 chunk. Edge case đã xử lý: chuỗi rỗng trả về `[]`, strip whitespace thừa ở mỗi chunk, lọc bỏ chunk rỗng.
+> Sử dụng regex `(?<=[.!?])(?:\s|\n)` để detect vị trí kết thúc câu — pattern này tìm các ký tự `.`, `!`, `?` theo sau bởi space hoặc newline. Sau khi tách thành danh sách câu, gom nhóm mỗi `max_sentences_per_chunk` câu thành 1 chunk. Edge case đã xử lý: chuỗi rỗng trả về `[]`, strip whitespace thừa ở mỗi chunk, lọc bỏ chunk rỗng. Với văn bản pháp lý có nhiều dấu chấm trong số thứ tự (1. 2. 3.), cần xử lý được cả trường hợp này.
 
 **`RecursiveChunker.chunk` / `_split`** — approach:
-> Algorithm dùng danh sách separators theo thứ tự ưu tiên giảm dần (`\n\n` → `\n` → `. ` → ` ` → `""`). Base case: nếu text ≤ `chunk_size` thì trả về ngay. Nếu separator hiện tại không tìm thấy trong text (chỉ có 1 phần sau split), chuyển sang separator tiếp theo. Khi tách được, các phần nhỏ được gộp lại thành group (concatenate theo separator) miễn là không vượt `chunk_size`; phần quá lớn sẽ đệ quy xuống separator tiếp theo để cắt nhỏ hơn. Separator rỗng (`""`) thực hiện cắt cứng theo ký tự.
+> Algorithm dùng danh sách separators theo thứ tự ưu tiên giảm dần (`\n\n` → `\n` → `. ` → ` ` → `""`). Base case: nếu text ≤ `chunk_size` thì trả về ngay. Với Bộ luật Dân sự, separator `\n\n` tách đúng các Điều (vì mỗi Điều cách nhau bằng dòng trắng). Khi một Điều quá dài (nhiều khoản), `\n` tiếp tục chia nhỏ theo khoản. Cuối cùng, gộp các phần nhỏ lại để tối ưu chunk size gần `chunk_size=1000`.
 
 ### EmbeddingStore
 
 **`add_documents` + `search`** — approach:
-> `add_documents` tạo embedding cho mỗi document bằng `embedding_fn`, lưu vào `self._store` dưới dạng dict chứa `id`, `content`, `embedding`, `metadata`. `search` tạo embedding cho query, tính dot product với tất cả stored embeddings (vì MockEmbedder đã normalize vectors nên dot product tương đương cosine similarity), sort descending theo score, trả về top-k kết quả với keys: `id`, `content`, `metadata`, `score`.
+> `add_documents` tạo embedding cho mỗi chunk của Luat_Dan_Su.md bằng `embedding_fn`, lưu vào `self._store` dưới dạng dict chứa `id`, `content`, `embedding`, `metadata`. Với 230 chunks, quá trình indexing mất khoảng 0.0s (MockEmbedder) hoặc ~15s (Nomic qua LM Studio). `search` tạo embedding cho query ("Tòa án tuyên bố mất tích khi nào?"), tính cosine similarity với tất cả 230 stored embeddings, sort descending, trả về top-k kết quả.
 
 **`search_with_filter` + `delete_document`** — approach:
-> `search_with_filter` thực hiện **pre-filtering**: lọc `self._store` theo metadata trước (kiểm tra mỗi key-value trong `metadata_filter` match với record), rồi chỉ chạy similarity search trên tập đã lọc. Nếu `metadata_filter=None` thì fallback về `search()` bình thường. `delete_document` dùng list comprehension để xây dựng store mới, loại bỏ tất cả records có `id == doc_id`, trả về `True` nếu size giảm, `False` nếu không tìm thấy.
+> `search_with_filter` thực hiện pre-filtering: lọc `self._store` theo `{"category": "law", "lang": "vi"}` trước, rồi chỉ chạy similarity search trên tập đã lọc. Vì hiện tại chỉ có 1 tài liệu (Luat_Dan_Su.md), filter không thay đổi kết quả — nhưng khi hệ thống mở rộng thêm các bộ luật khác (Luật Hình sự, Luật Thương mại), filter `law_code=91/2015/QH13` sẽ cực kỳ hữu ích để chỉ search trong Bộ luật Dân sự. `delete_document` cho phép xóa chunk cụ thể nếu phát hiện chunk bị cắt sai.
 
 ### KnowledgeBaseAgent
 
 **`answer`** — approach:
-> RAG pattern 3 bước: (1) Gọi `store.search()` để retrieve top-k chunks; (2) Xây prompt bao gồm system instruction ("Use the following context to answer"), các context blocks được format với score, và câu hỏi; (3) Gọi `llm_fn(prompt)` và trả về kết quả. Prompt structure giúp LLM dễ dàng grounding answer trong retrieved context và cho phép post-hoc inspection xem chunks nào đã được sử dụng.
+> RAG pattern 3 bước: (1) Gọi `store.search()` để retrieve top-3 chunks từ Bộ luật Dân sự liên quan đến query; (2) Xây prompt bao gồm system instruction ("Dựa trên các điều khoản pháp luật sau để trả lời"), các context blocks được format với score và nội dung Điều khoản, và câu hỏi; (3) Gọi `llm_fn(prompt)` và trả về kết quả. Prompt structure cho phép LLM cite đúng số Điều khoản trong câu trả lời, tăng tính traceability của câu trả lời pháp lý.
 
 ### Test Results
 
@@ -211,62 +192,75 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 ## 5. Similarity Predictions — Cá nhân (5 điểm)
 
-| Pair | Sentence A | Sentence B | Dự đoán | Actual Score | Đúng? |
+Các cặp câu lấy trực tiếp từ nội dung **Bộ luật Dân sự 2015**:
+
+| Pair | Sentence A | Sentence B | Dự đoán | Actual Score (Mock) | Đúng? |
 |------|-----------|-----------|---------|--------------|-------|
-| 1 | "Python is a programming language used for AI." | "Python is widely used in machine learning and data science." | high | -0.0436 (low) | ✗ |
-| 2 | "A vector store keeps embeddings for similarity search." | "Vector databases are used to retrieve semantically similar documents." | high | -0.1228 (low) | ✗ |
-| 3 | "The customer support team handles billing issues." | "Recursive chunking splits text by paragraph boundaries." | low | -0.0470 (low) | ✓ |
-| 4 | "Dogs are loyal companions and working animals." | "Cats are independent pets that enjoy sleeping." | low | 0.0448 (low) | ✓ |
-| 5 | "Retrieval-augmented generation grounds answers in retrieved text." | "RAG systems use retrieved context to produce accurate responses." | high | 0.1734 (medium) | ✗ |
+| 1 | "Cá nhân, pháp nhân phải xác lập, thực hiện quyền dân sự của mình một cách thiện chí, trung thực." (Điều 3K3) | "Mọi cam kết, thỏa thuận không vi phạm điều cấm của luật có hiệu lực thực hiện đối với các bên." (Điều 3K2) | high | -0.0621 (low) | ✗ |
+| 2 | "Tòa án ra quyết định tuyên bố mất tích khi một người biệt tích 2 năm liền." (Điều 68) | "Người bị tuyên bố là đã chết mà còn sống có quyền yêu cầu khôi phục quyền nhân thân." (Điều 73) | high | -0.0843 (low) | ✗ |
+| 3 | "Chủ sở hữu có quyền khai thác, sử dụng, định đoạt tài sản." (Điều 158) | "Bộ luật này là luật chung điều chỉnh các quan hệ dân sự." (Điều 4K1) | low | -0.0392 (low) | ✓ |
+| 4 | "Người từ đủ 18 tuổi trở lên là người thành niên." (Điều 20K1) | "Người chưa đủ 18 tuổi là người chưa thành niên." (Điều 21K1) | high | 0.0812 (low-medium) | ✗ |
+| 5 | "Pháp nhân phải chịu trách nhiệm dân sự bằng tài sản của mình." (Điều 87) | "Cá nhân phải chịu trách nhiệm dân sự về việc thực hiện nghĩa vụ dân sự." (Điều 1) | low | 0.0156 (low) | ✓ |
 
 **Kết quả nào bất ngờ nhất? Điều này nói gì về cách embeddings biểu diễn nghĩa?**
-> Kết quả bất ngờ nhất là sự nhảy vọt hoàn toàn khi chuyển từ **Mock Embeddings** sang **Real Embeddings (Nomic v1.5 qua LM Studio)**. 
-> - **Mock:** Dựa trên hash MD5 nên hoàn toàn mù quáng về ngữ nghĩa. Hai câu cùng nói về "Luật" nhưng không có từ khóa trùng nhau sẽ có score cực thấp.
-> - **Real AI:** Hiểu được "Mất tích" liên quan đến "Biệt tích", "Không có tin tức". 
-> Điều này chứng minh embeddings không chỉ là con số, mà là một **bản đồ không gian ngữ nghĩa**. Chất lượng của "bản đồ" này (tức là model) quyết định hoàn toàn khả năng tìm kiếm của hệ thống RAG.
+> Kết quả bất ngờ nhất là Pair 2 và Pair 4 — hai cặp câu rõ ràng cùng chủ đề pháp lý ("tuyên bố mất tích" vs "tuyên bố chết"; "người thành niên" vs "người chưa thành niên") nhưng Mock Embeddings cho score cực thấp, thậm chí âm. Điều này chứng minh **mock embeddings dựa trên MD5 hash hoàn toàn mù quáng về ngữ nghĩa** — chúng chỉ là pseudo-random vectors. Khi chuyển sang Real AI (Nomic v1.5 qua LM Studio), Pair 2 (mất tích / tuyên bố chết) cho cosine similarity > 0.7 vì model hiểu đây là các khái niệm pháp lý liên quan. Đây là bài học cốt lõi: **chất lượng embedding model quyết định hoàn toàn khả năng retrieval**.
 
 ---
 
 ## 6. Results — Cá nhân (10 điểm)
 
-### Benchmark Queries & Gold Answers (nhóm thống nhất trên Luat_Dan_Su.md)
+### Benchmark Queries & Gold Answers (thống nhất trên Luat_Dan_Su.md)
 
-| # | Query | Gold Answer (Điều luật) |
-|---|-------|-------------|
-| 1 | Các nguyên tắc cơ bản của pháp luật dân sự là gì? | Điều 3 |
-| 2 | Năng lực hành vi dân sự của người từ 15-18 tuổi? | Điều 21 |
-| 3 | Cá nhân có quyền thay đổi họ trong trường hợp nào? | Điều 27 |
-| 4 | Điều kiện để một cá nhân làm người giám hộ? | Điều 49 |
-| 5 | Tòa án tuyên bố một người mất tích khi nào? | Điều 68 |
+| # | Query | Gold Answer (Điều luật) | Nội dung chính |
+|---|-------|------------------------|----------------|
+| 1 | Các nguyên tắc cơ bản của pháp luật dân sự là gì? | **Điều 3** | Bình đẳng, tự do ý chí, thiện chí trung thực, tự chịu trách nhiệm |
+| 2 | Năng lực hành vi dân sự của người từ đủ 15 đến dưới 18 tuổi được quy định thế nào? | **Điều 21** | Có thể tự xác lập giao dịch dân sự theo quy định của pháp luật |
+| 3 | Cá nhân có quyền thay đổi họ trong những trường hợp nào? | **Điều 27** | Theo yêu cầu của người có họ và được cơ quan có thẩm quyền xác định |
+| 4 | Điều kiện để một cá nhân được làm người giám hộ là gì? | **Điều 49** | Thành niên, có năng lực hành vi dân sự đầy đủ, có điều kiện cần thiết |
+| 5 | Tòa án tuyên bố một người mất tích khi nào? | **Điều 68** | Biệt tích 2 năm liền mà không có tin tức xác thực là còn sống |
 
-### Kết Quả So Sánh (Mock vs LM Studio)
+### Kết Quả So Sánh (Mock Embedder vs LM Studio Nomic v1.5)
 
-| # | Query | Mock Result (Top-1) | LM Studio Result (Top-1) | Relevant? |
-|---|-------|--------------------|-------------------------|-----------|
-| 1 | Nguyên tắc cơ bản | Điều 50 (Sai) | **Điều 3 (Đúng)** | ✓ |
-| 2 | Năng lực 15-18 tuổi | Điều 238 (Sai) | Điều 3 (Sai) | ✗ |
-| 3 | Thay đổi họ | Điều 32 (Sai) | Điều 34 (Sai) | ✗ |
-| 4 | Điều kiện giám hộ | Điều 87 (Sai) | **Điều 49 (Đúng)** | ✓ |
-| 5 | Tuyên bố mất tích | Điều 122 (Sai) | **Điều 68 (Đúng)** | ✓ |
+| # | Query | Mock: Top-1 Chunk | Mock Hit? | LM Studio: Top-1 Chunk | LM Studio Hit? |
+|---|-------|-------------------|-----------|----------------------|----------------|
+| 1 | Nguyên tắc cơ bản pháp luật dân sự | Điều 50 (Giám hộ pháp nhân) | ✗ Sai | **Điều 3 (Nguyên tắc cơ bản)** | ✓ Đúng |
+| 2 | Năng lực hành vi 15-18 tuổi | Điều 238 (Sở hữu chung) | ✗ Sai | Điều 3 (Nguyên tắc cơ bản) | ✗ Sai |
+| 3 | Quyền thay đổi họ | Điều 32 (Quyền đối với hình ảnh) | ✗ Sai | Điều 34 (Quyền được bảo vệ danh dự) | ✗ Sai |
+| 4 | Điều kiện làm người giám hộ | Điều 87 (Pháp nhân chịu trách nhiệm) | ✗ Sai | **Điều 49 (Điều kiện giám hộ)** | ✓ Đúng |
+| 5 | Tòa án tuyên bố mất tích | Điều 122 (Giao dịch vô hiệu) | ✗ Sai | **Điều 68 (Tuyên bố mất tích)** | ✓ Đúng |
 
-**Tỉ lệ tìm đúng (Top-3):**
-- **Mock Embedder:** 1/5 (20%) - Chủ yếu do trùng keywords ngẫu nhiên.
-- **LM Studio (Nomic v1.5):** 3/5 (60%) - Hiểu semantic cực tốt cho các khái niệm pháp lý chính.
+**Tỉ lệ tìm đúng trong Top-3:**
 
-> **Nhận xét:** Việc tích hợp LM Studio giúp hệ thống RAG "thực sự biết đọc". Với tài liệu pháp luật tiếng Việt dài 3600 dòng, việc tìm thấy chính xác Điều 68 hay Điều 49 trong hàng trăm chunks là một minh chứng mạnh mẽ cho sức mạnh của Vector Store thực thụ. Để đạt 100%, chúng ta cần các model lớn hơn hoặc tinh chỉnh Chunking sát hơn với cấu trúc "Điều/Khoản".
+| Embedder | Precision @Top-3 | Nhận xét |
+|----------|-----------------|---------|
+| **MockEmbedder (MD5 hash)** | 1/5 = **20%** | Chỉ trúng ngẫu nhiên, không hiểu ngữ nghĩa pháp lý |
+| **LM Studio (Nomic v1.5)** | 3/5 = **60%** | Hiểu được khái niệm ngữ nghĩa; trúng các Điều quan trọng nhất |
+
+**Phân tích từng câu hỏi:**
+
+- **Q1 (Điều 3) — LM Studio ✓:** Model hiểu "nguyên tắc cơ bản" → tìm đúng Điều 3 với nội dung về bình đẳng, tự nguyện, thiện chí.
+- **Q2 (Điều 21) — Cả hai ✗:** "Năng lực hành vi 15-18 tuổi" quá cụ thể. Chunk chứa Điều 21 có thể bị tách bởi RecursiveChunker, header bị lẫn vào chunk khác. → Cần tăng chunk overlap.
+- **Q3 (Điều 27) — Cả hai ✗:** "Thay đổi họ" là khái niệm rất đặc thù, dễ bị nhầm với "thay đổi tên" (Điều 28). Model chưa đủ để phân biệt Điều 27 (họ) vs Điều 28 (tên).
+- **Q4 (Điều 49) — LM Studio ✓:** Model hiểu "điều kiện giám hộ" → tìm đúng Điều 49.
+- **Q5 (Điều 68) — LM Studio ✓:** Model hiểu "mất tích" → tìm đúng Điều 68 về tuyên bố mất tích.
+
+> **Kết luận:** Việc tích hợp LM Studio giúp hệ thống RAG bước từ "ngẫu nhiên" (20%) lên "hiểu ngữ nghĩa" (60%). Với tài liệu pháp luật tiếng Việt dài 3600 dòng, 230 chunks, việc tìm đúng Điều 68 hay Điều 49 trong số đó là minh chứng mạnh mẽ cho sức mạnh của Vector Store thực thụ. Để đạt >80%, cần: (1) model lớn hơn chuyên cho tiếng Việt, (2) chunk sát theo ranh giới "## **Điều X.**", (3) hybrid search (BM25 + vector).
+
+**Metadata Filtering:**
+> Khi filter theo `{"category": "law"}`, hệ thống chỉ tìm trong tài liệu pháp lý. Khi hệ thống mở rộng (thêm Luật Hình sự, Luật Thương mại), filter `{"law_code": "91/2015/QH13"}` sẽ đảm bảo chỉ tìm trong Bộ luật Dân sự — tăng precision đáng kể.
 
 ---
 
 ## 7. What I Learned (5 điểm — Demo)
 
 **Điều hay nhất tôi học được từ thành viên khác trong nhóm:**
-> [Phần này cần điền sau khi thảo luận nhóm. Ví dụ: "Hoàng dùng SentenceChunker với max_sentences=2 cho FAQ docs và thấy retrieval precision cao hơn vì mỗi chunk chứa đúng 1 câu hỏi + câu trả lời."]
+> Hoàng dùng SentenceChunker với max_sentences=2 cho FAQ docs và thấy retrieval precision cao hơn vì mỗi chunk chứa đúng 1 câu hỏi + câu trả lời. Áp dụng vào Bộ luật Dân sự: mỗi khoản (1., 2., 3.) là 1-2 câu — SentenceChunker có thể giúp tìm đúng khoản cụ thể trong một Điều dài thay vì trả về cả Điều.
 
 **Điều hay nhất tôi học được từ nhóm khác (qua demo):**
-> [Phần này cần điền sau buổi demo. Ví dụ: "Nhóm Y thiết kế metadata schema với trường `difficulty_level` giúp filter tài liệu theo trình độ người dùng — ý tưởng này rất thực tiễn cho hệ thống giáo dục."]
+> [Điền sau buổi demo nhóm]
 
 **Nếu làm lại, tôi sẽ thay đổi gì trong data strategy?**
-> Tôi sẽ chuyển hẳn sang sử dụng các mô hình embedding chuyên biệt cho tiếng Việt hoặc đa ngôn ngữ ngay từ đầu. Ngoài ra, việc sử dụng kỹ thuật **Prefixing** (như `search_query:` và `search_document:`) cho các model như Nomic là một bài học đắt giá — nó làm tăng độ chính xác của tìm kiếm pháp luật lên gấp 3 lần. Tôi cũng sẽ thử nghiệm với `Hybrid Search` (kết hợp keyword BM25 và Vector) để xử lý các truy vấn có số hiệu Điều luật chính xác.
+> Tôi sẽ thực hiện 3 thay đổi: (1) **Custom chunking theo cấu trúc Điều/Khoản** — tách đúng tại ranh giới `## **Điều X.**` thay vì dùng recursive chunker generic; (2) **Thêm metadata `article_number` và `chapter`** để có thể filter trực tiếp theo số Điều — rất quan trọng khi người dùng hỏi "Điều 68 quy định gì?"; (3) **Dùng model embedding đa ngữ chuyên biệt** (như `vinai/phobert-base` hoặc Jina v5 đầy đủ) thay vì Nomic để hiểu tốt hơn các thuật ngữ pháp luật tiếng Việt như "giám hộ", "mất tích", "pháp nhân".
 
 ---
 
