@@ -92,8 +92,10 @@ def run_manual_demo(question: str | None = None, sample_files: list[str] | None 
             embedder = _mock_embed
     elif provider == "openai":
         try:
-            embedder = OpenAIEmbedder(model_name=os.getenv("OPENAI_EMBEDDING_MODEL", OPENAI_EMBEDDING_MODEL))
-        except Exception:
+            # OpenAIEmbedder auto-reads OPENAI_API_BASE, OPENAI_API_KEY, OPENAI_EMBEDDING_MODEL from env
+            embedder = OpenAIEmbedder()
+        except Exception as exc:
+            print(f"  [!] OpenAIEmbedder failed ({exc}), falling back to mock.")
             embedder = _mock_embed
     else:
         embedder = _mock_embed

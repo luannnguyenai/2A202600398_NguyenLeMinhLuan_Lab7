@@ -1,0 +1,106 @@
+Chi tiết thủ tục hành chính
+Mã thủ tục: 3.000498
+Số quyết định: 5709/QĐ-BCA-C06
+Tên thủ tục: Cấp tài khoản định danh điện tử cho cơ quan, tổ chức
+Cấp thực hiện: Cấp Xã
+Loại thủ tục: Loại khác
+Lĩnh vực: Định danh và xác thực điện tử
+Trình tự thực hiện: 
+Bước 1: Nộp hồ sơ
+(1) Người đại diện theo pháp luật, người đứng đầu cơ quan, tổ chức, hoặc người được người đại điện theo pháp luật, người đứng đầu ủy quyền sử dụng tài khoản định danh điện tử mức độ 02 của mình đăng nhập Ứng dụng định danh quốc gia (VNeID), cung cấp các thông tin theo hướng dẫn và gửi yêu cầu đề nghị cấp tài khoản định danh điện tử cho cơ quan, tổ chức sau khi được sự đồng ý của toàn bộ người đại diện theo pháp luật khác của tổ chức (nếu có).
+(2) Trường hợp người đại diện theo pháp luật, người đứng đầu cơ quan, tổ chức hoặc người được ủy quyền trực tiếp nộp hồ sơ tại Công an cấp xã thì thực hiện kê khai Phiếu đề nghị cấp tài khoản định danh điện tử dùng cho cơ quan, tổ chức (mẫu TK02 ban hành kèm theo Nghị định số 69/2024/NĐ-CP ngày 25/6/2024 quy định về định danh và xác thực điện tử) cho cán bộ tiếp nhận.
+Bước 2: Bộ phận tiếp nhận hồ sơ đề nghị cấp tài khoản định danh điện tử của cơ quan, tổ chức gửi yêu cầu đề nghị cấp tài khoản định danh điện tử của cơ quan, tổ chức cho cơ quan quản lý định danh và xác thực điện tử.
+Bước 3. Cơ quan quản lý định danh và xác thực điện tử tiến hành kiểm tra, xác thực thông tin về cơ quan, tổ chức trong Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp, cơ sở dữ liệu quốc gia và cơ sở dữ liệu chuyên ngành khác. 
+Trường hợp thông tin về cơ quan, tổ chức chưa có trong Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp, cơ sở dữ liệu quốc gia và cơ sở dữ liệu chuyên ngành khác thì thông báo cho cơ quan tiếp nhận hồ sơ biết và thực hiện xác minh thông tin về cơ quan, tổ chức. Kết quả xác minh đề nghị thông báo lại cho cơ quan quản lý định danh và xác thực điện tử biết để quyết định việc cấp, không cấp tài khoản định danh điện tử cho cơ quan, tổ chức.
+Bước 4. Cơ quan quản lý định danh và xác thực điện tử thông báo kết quả đăng ký cấp tài khoản định danh điện tử cho người thực hiện đăng ký qua Ứng dụng định danh quốc gia hoặc số thuê bao di động chính chủ hoặc địa chỉ thư điện tử.
+Trường hợp không đủ điều kiện cấp tài khoản định danh điện tử thì Cơ quan quản lý định danh và xác thực điện tử thông báo bằng văn bản, tin nhắn hoặc qua tài khoản định danh điện tử của người thực hiện đăng ký.
+Cách thức thực hiện: 
+Thành phần hồ sơ: 
+Bao gồm
+Đối tượng thực hiện: Công dân Việt Nam, Doanh nghiệp, Tổ chức (không bao gồm doanh nghiệp, HTX)
+Cơ quan thực hiện: Công an Xã
+Cơ quan có thẩm quyền: Cục cảnh sát quản lý hành chính về trật tự, xã hội
+Địa chỉ tiếp nhận HS: Không có thông tin
+Cơ quan được ủy quyền: Không có thông tin
+Cơ quan phối hợp: Không có thông tin
+Kết quả thực hiện: Thông báo kết quả đăng ký cấp tài khoản định danh điện tử
+Căn cứ pháp lý: 
+Yêu cầu, điều kiện thực hiện: Không
+Từ khóa: Không có thông tin
+Mô tả: Không có thông tin
+
+Hình thức nộp
+
+Thời hạn giải quyết
+
+Phí, lệ phí
+
+Mô tả
+
+Trực tiếp
+
+3 Ngày làm việc
+
+Phí : 0 Đồng
+
+- Nộp hồ sơ trực tiếp tại Công an cấp xã;
+- Qua Ứng dụng định danh quốc gia (VNeID);
+- Qua dịch vụ bưu chính (nếu có).
+
+- Không quá 03 ngày làm việc với trường hợp thông tin cần xác thực về tổ chức đã có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành;
+- Không quá 15 ngày với trường hợp thông tin cần xác minh về tổ chức không có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành.
+
+Trực tuyến
+
+3 Ngày làm việc
+
+Phí : 0 Đồng
+
+- Nộp hồ sơ trực tiếp tại Công an cấp xã;
+- Qua Ứng dụng định danh quốc gia (VNeID);
+- Qua dịch vụ bưu chính (nếu có).
+
+- Không quá 03 ngày làm việc với trường hợp thông tin cần xác thực về tổ chức đã có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành;
+- Không quá 15 ngày với trường hợp thông tin cần xác minh về tổ chức không có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành.
+
+Dịch vụ bưu chính
+
+3 Ngày làm việc
+
+Phí : 0 Đồng
+
+- Nộp hồ sơ trực tiếp tại Công an cấp xã;
+- Qua Ứng dụng định danh quốc gia (VNeID);
+- Qua dịch vụ bưu chính (nếu có).
+
+- Không quá 03 ngày làm việc với trường hợp thông tin cần xác thực về tổ chức đã có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành;
+- Không quá 15 ngày với trường hợp thông tin cần xác minh về tổ chức không có trong cơ sở dữ liệu quốc gia, cơ sở dữ liệu chuyên ngành.
+
+Tên giấy tờ
+
+Mẫu đơn, tờ khai
+
+Số lượng
+
+Phiếu đề nghị cấp tài khoản định danh điện tử dùng cho cơ quan, tổ chức (mẫu TK02 ban hành kèm theo Nghị định số 69/2024/NĐ-CP ngày 25/6/2024 quy định về định danh và xác thực  điện tử).
+
+TK02-Phiunghcptikhonnhdanhintdngchotchc.docx
+
+Bản chính: 1
+Bản sao: 1
+
+Số ký hiệu
+
+Trích yếu
+
+Ngày ban hành
+
+Cơ quan ban hành
+
+69/2024/NĐ-CP
+
+Nghị định số 69/2024/NĐ-CP của Chính phủ: Quy định về định danh và xác thực điện tử
+
+25-06-2024
+
+Chính phủ

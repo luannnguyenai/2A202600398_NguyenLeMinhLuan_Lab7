@@ -46,14 +46,30 @@ class LocalEmbedder:
 class OpenAIEmbedder:
     """OpenAI embeddings API-backed embedder."""
 
-    def __init__(self, model_name: str = OPENAI_EMBEDDING_MODEL) -> None:
+    def __init__(
+        self,
+        model_name: str | None = None,
+        base_url: str | None = None,
+        api_key: str | None = None,
+    ) -> None:
+        import os
         from openai import OpenAI
 
-        self.model_name = model_name
-        self._backend_name = model_name
-        self.client = OpenAI()
+        self.model_name = model_name or os.getenv("OPENAI_EMBEDDING_MODEL", OPENAI_EMBEDDING_MODEL)
+        self._backend_name = self.model_name
+        
+        # Priority: explicit arg > environment variable > default
+        final_base_url = base_url or os.getenv("OPENAI_API_BASE")
+        final_api_key = api_key or os.getenv("OPENAI_API_KEY", "lm-studio")
+
+        self.client = OpenAI(
+            base_url=final_base_url,
+            api_key=final_api_key,
+        )
 
     def __call__(self, text: str) -> list[float]:
+        # For local servers like LM Studio, if model_name is not strictly required,
+        # we still send it, but we've ensured it's prioritized from env.
         response = self.client.embeddings.create(model=self.model_name, input=text)
         return [float(value) for value in response.data[0].embedding]
 
